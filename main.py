@@ -12,7 +12,7 @@ iris = load_iris()
 X, y = iris.data, iris.target
 
 # Split the dataset into a training set and a test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.7, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Initialize the KNN classifier
 knn = KNeighborsClassifier()
@@ -61,4 +61,4 @@ sorted_k_scores = sorted(k_scores, key=lambda x: x[1], reverse=True)
 
 print("K values sorted from best to worst:")
 for k, score in sorted_k_scores:
-    print(f"K={k}, Score={score:.6f}")
+    print(f"K={k}, Score={score:.4f}")
