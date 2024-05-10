@@ -3,12 +3,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
+
 def calc_score_for_specific_k(k):
     model = KNeighborsClassifier(n_neighbors=k)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     return accuracy
+
+
 def find_best_k(X_train, X_test, y_train, y_test):
     max_accuracy = 0
     best_k = 1
