@@ -12,13 +12,13 @@ iris = load_iris()
 X, y = iris.data, iris.target
 
 # Split the dataset into a training set and a test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.45, random_state=42)
 
 # Initialize the KNN classifier
 knn = KNeighborsClassifier()
 
 # Create a dictionary of all values we want to test for n_neighbors
-param_grid = {'n_neighbors': np.arange(1, 31)}
+param_grid = {'n_neighbors': np.arange(1, len(X_test))}
 
 # Use GridSearch to test all values for n_neighbors
 knn_gscv = GridSearchCV(knn, param_grid, cv=10)
@@ -47,7 +47,7 @@ print(f"Best score: {best_score}")
 # Plotting the chart
 mean_test_scores = knn_gscv.cv_results_['mean_test_score']
 plt.figure(figsize=(12, 6))
-plt.plot(np.arange(1, 31), mean_test_scores, color='blue', linestyle='dashed', marker='o',
+plt.plot(np.arange(1, len(X_test)), mean_test_scores, color='blue', linestyle='dashed', marker='o',
          markerfacecolor='red', markersize=10)
 plt.title('Accuracy vs. K Value')
 plt.xlabel('K Value')
@@ -55,7 +55,7 @@ plt.ylabel('Accuracy')
 plt.show()
 
 # Sort and print K values and scores from best to worst
-k_values = list(range(1, 31))
+k_values = list(range(1, len(X_test)))
 k_scores = list(zip(k_values, mean_test_scores))
 sorted_k_scores = sorted(k_scores, key=lambda x: x[1], reverse=True)
 
