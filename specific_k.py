@@ -17,6 +17,7 @@ def find_best_k(X_train, X_test, y_train, y_test):
 
     for k in range(1, 80):
         accuracy = calc_score_for_specific_k(k)
+        print(f"for k : {k} the score is {accuracy}")
         if accuracy > max_accuracy:
             max_accuracy = accuracy
             best_k = k
