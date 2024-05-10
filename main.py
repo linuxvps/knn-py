@@ -42,4 +42,4 @@ mean_test_scores = knn_gscv.cv_results_['mean_test_score']
 # Print sorted K values and scores from best to worst
 print_data().print_sorted_scores(param_grid, mean_test_scores, best_n_neighbors, best_score, y_test, y_pred)
 # Plotting the chart
-naghashi().plot_accuracy_vs_k_value(param_grid, mean_test_scores)
+naghashi().plot_accuracy_vs_k_value(param_grid, mean_test_scores,best_n_neighbors,"green")
