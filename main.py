@@ -1,19 +1,12 @@
 # Required imports
 import numpy as np
-from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
-
 
 from DataSet import DatasetLoader
 from SplitTrainAndTest import TrainAndTest
 from naghasiKeshodan import naghashi
 from print_k_value import print_data
-
-
-
-cvv = 10
-
 
 # Load the iris dataset
 x, y = DatasetLoader().load_iris()
@@ -22,10 +15,8 @@ x_train, x_test, y_train, y_test = TrainAndTest().split_data(x, y, 0.2, 42)
 # Initialize the KNN classifier
 knn = KNeighborsClassifier()
 
-
-
 i = int(np.floor(len(x_train) / 10))
-k_size=len(x_train)-i-1
+k_size = len(x_train) - i - 1
 
 # Create a dictionary of all values we want to test for n_neighbors
 param_grid = {'n_neighbors': np.arange(1, k_size)}
@@ -47,9 +38,8 @@ knn_best = KNeighborsClassifier(n_neighbors=best_n_neighbors)
 knn_best.fit(x_train, y_train)
 y_pred = knn_best.predict(x_test)
 
-
 mean_test_scores = knn_gscv.cv_results_['mean_test_score']
 # Print sorted K values and scores from best to worst
-print_data().print_sorted_scores(param_grid, mean_test_scores,best_n_neighbors,best_score,y_test, y_pred)
+print_data().print_sorted_scores(param_grid, mean_test_scores, best_n_neighbors, best_score, y_test, y_pred)
 # Plotting the chart
 naghashi().plot_accuracy_vs_k_value(param_grid, mean_test_scores)
