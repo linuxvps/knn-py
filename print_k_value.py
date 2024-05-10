@@ -20,5 +20,5 @@ class print_data:
         sorted_k_scores = sorted(k_scores, key=lambda x: x[1], reverse=True)
 
         print("K values sorted from best to worst:")
-        for k, score in sorted_k_scores:
-            print(f"K={k}, Score={score:.4f}")
+        for k, score in k_scores:
+            print(f"K={k}, Score={score:f}")

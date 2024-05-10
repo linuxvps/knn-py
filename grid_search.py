@@ -14,12 +14,8 @@ x, y = DatasetLoader().load_iris()
 x_train, x_test, y_train, y_test = TrainAndTest().split_data(x, y, 0.4, 42)
 # Initialize the KNN classifier
 knn = KNeighborsClassifier()
-
-i = int(np.floor(len(x_train) / 10))
-k_size = len(x_train) - i - 1
-
 # Create a dictionary of all values we want to test for n_neighbors
-param_grid = {'n_neighbors': np.arange(1, k_size)}
+param_grid = {'n_neighbors': np.arange(1, 80)}
 
 # Use GridSearch to test all values for n_neighbors
 knn_gscv = GridSearchCV(knn, param_grid, cv=10)
