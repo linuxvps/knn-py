@@ -11,7 +11,7 @@ from print_k_value import print_data
 # Load the iris dataset
 x, y = DatasetLoader().load_iris()
 # Split the dataset into a training set and a test set
-x_train, x_test, y_train, y_test = TrainAndTest().split_data(x, y, 0.2, 42)
+x_train, x_test, y_train, y_test = TrainAndTest().split_data(x, y, 0.4, 42)
 # Initialize the KNN classifier
 knn = KNeighborsClassifier()
 
@@ -42,4 +42,4 @@ mean_test_scores = knn_gscv.cv_results_['mean_test_score']
 # Print sorted K values and scores from best to worst
 print_data().print_sorted_scores(param_grid, mean_test_scores, best_n_neighbors, best_score, y_test, y_pred)
 # Plotting the chart
-naghashi().plot_accuracy_vs_k_value(param_grid, mean_test_scores,best_n_neighbors,"green")
+naghashi().plot_accuracy_vs_k_value(param_grid, mean_test_scores, best_n_neighbors, "green")
